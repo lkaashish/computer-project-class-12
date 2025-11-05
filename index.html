@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Masters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+                <rect width="50" height="50" rx="10" fill="#4A90E2"/>
+                <text x="25" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">TM</text>
+            </svg>
+            <span class="logo-text">Tech Masters</span>
+        </div>
+        
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li class="dropdown">
+                <a href="#" class="nav-link">Apps</a>
+                <div class="dropdown-content">
+                    <a href="dictionary.html">Dictionary</a>
+                    <a href="clock.html">Clock</a>
+                    <a href="calculator.html">Calculator</a>
+                    <a href="calendar.html">Calendar</a>
+                    <a href="game.html">Game</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link">Members</a>
+                <div class="dropdown-content">
+                    <a href="member1.html">Aashish</a>
+                    <a href="member2.html">Aishwarya</a>
+                    <a href="member3.html">Aryan</a>
+                    <a href="member4.html">Utsav</a>
+                    <a href="member5.html">Sagar</a>
+                </div>
+            </li>
+        </ul>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+            <button onclick="searchSite()" class="search-btn">Go</button>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <div class="hero">
+            <h1>Welcome to Tech Masters</h1>
+            <p>Your gateway to innovative applications and talented members</p>
+        </div>
+        
+        <section class="features">
+            <div class="feature-card">
+                <h3>Our Apps</h3>
+                <p>Explore our diverse range of applications:
+                    <ul>
+                        <li>Dictionary</li>
+                        <li>Clock</li>
+                        <li>Calculator</li>
+                        <li>Calendar</li>
+                        <li>Game</li>
+                    </ul>
+                </p>
+            
+            </div>
+            <div class="feature-card">
+                <h3>Our Team</h3>
+                <p>Meet the talented individuals behind Tech Masters:   
+                    <ul>
+                        <li>Aashish Sharma Lamichhane (Leader)</li>
+                        <li>Aishwarya Thapa</li>
+                        <li>Aryan Gurung</li>
+                        <li>Utsav Adhikari</li>
+                        <li>Shiv Sagar</li>
+                    </ul>
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function searchSite() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            const pages = {
+                'dictionary': 'dictionary.html',
+                'clock': 'clock.html',
+                'calculator': 'calculator.html',
+                'calendar': 'calendar.html',
+                'game': 'game.html',
+                'Aashish': 'member1.html',
+                'member 1': 'member1.html',
+                'member2': 'member2.html',
+                'member 2': 'member2.html',
+                'member3': 'member3.html',
+                'member 3': 'member3.html',
+                'member4': 'member4.html',
+                'member 4': 'member4.html',
+                'member5': 'member5.html',
+                'member 5': 'member5.html',
+                'home': 'index.html'
+            };
+            
+            if (pages[searchTerm]) {
+                window.location.href = pages[searchTerm];
+            } else {
+                alert('Page not found. Try searching for: Dictionary, Clock, Calculator, Calendar, Game, or Member 1-5');
+            }
+        }
+        
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchSite();
+            }
+        });
+    </script>
+</body>
+</html>
