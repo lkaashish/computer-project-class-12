@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nepali-English Calendar</title>
+<title>English Calendar</title>
 <style>
   body {
     font-family: "Poppins", sans-serif;
@@ -68,13 +67,6 @@
     padding: 8px 0;
   }
 
-  .day .nepali-day {
-    font-size: 0.8em;
-    opacity: 0.9;
-    display: block;
-    margin-top: 3px;
-  }
-
   .date-cell {
     position: relative;
     background: rgba(255,255,255,0.15);
@@ -90,20 +82,11 @@
     transform: scale(1.05);
   }
 
-  .nepali-date {
+  .date-number {
     font-size: 1.6em;
     font-weight: bold;
     margin-top: 10px;
     color: #fff;
-  }
-
-  .english-date {
-    position: absolute;
-    bottom: 6px;
-    right: 8px;
-    font-size: 0.8em;
-    opacity: 0.9;
-    color: #f0f0f0;
   }
 
   .today {
@@ -121,7 +104,7 @@
 </head>
 <body>
 
-<h1>📅 नेपाली–English Calendar</h1>
+<h1>📅 English Calendar</h1>
 <div class="header">
   <button class="btn" id="prevBtn">⬅️</button>
   <div id="monthYear">Month Year</div>
@@ -133,33 +116,6 @@
 <footer>Made with ❤️ by Aryan Gurung</footer>
 
 <script>
-// Nepali months
-const nepaliMonths = [
-  "बैशाख", "जेठ", "असार", "श्रावण", "भदौ", "आश्विन",
-  "कार्तिक", "मंसिर", "पुष", "माघ", "फाल्गुन", "चैत्र"
-];
-
-// Nepali weekdays
-const nepaliDays = ["आइत", "सोम", "मंगल", "बुध", "बिही", "शुक्र", "शनि"];
-
-// Convert English numbers to Nepali numbers
-function toNepaliNumber(num) {
-  const digits = ['०','१','२','३','४','५','६','७','८','९'];
-  return num.toString().split('').map(n => digits[n] || n).join('');
-}
-
-// Approx English → Nepali conversion
-function toNepaliDate(engYear, engMonth, engDay) {
-  let bsYear = engYear + 56;
-  let bsMonth = engMonth + 9;
-  if (bsMonth > 12) {
-    bsYear++;
-    bsMonth -= 12;
-  }
-  let bsDay = engDay;
-  return { bsYear, bsMonth, bsDay };
-}
-
 const monthYearText = document.getElementById("monthYear");
 const calendar = document.getElementById("calendar");
 
@@ -167,39 +123,31 @@ let currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 
 function renderCalendar(year, month) {
-  calendar.innerHTML = ""; // Clear old calendar
+  calendar.innerHTML = "";
 
   const today = new Date();
   const firstDay = new Date(year, month, 1).getDay();
   const totalDays = new Date(year, month + 1, 0).getDate();
 
-  // Header text
-  const nepaliMonthName = nepaliMonths[(month + 8) % 12];
-  const nepaliYear = year + 56;
-  monthYearText.textContent =
-    `${new Date(year, month).toLocaleString("en-US", { month: "long" })} ${year} | ${nepaliMonthName} ${toNepaliNumber(nepaliYear)} वर्ष`;
+  monthYearText.textContent = `${new Date(year, month).toLocaleString("en-US", { month: "long" })} ${year}`;
 
-  // Add weekday headers
-  const engDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   for (let i = 0; i < 7; i++) {
     const div = document.createElement("div");
     div.className = "day";
-    div.innerHTML = `${engDays[i]} <span class="nepali-day">${nepaliDays[i]}</span>`;
+    div.textContent = days[i];
     calendar.appendChild(div);
   }
 
-  // Empty spaces before month start
   for (let i = 0; i < firstDay; i++) {
     const empty = document.createElement("div");
     calendar.appendChild(empty);
   }
 
-  // Add all date cells
   for (let d = 1; d <= totalDays; d++) {
     const div = document.createElement("div");
     div.className = "date-cell";
 
-    const { bsDay } = toNepaliDate(year, month + 1, d);
     const isToday =
       d === today.getDate() &&
       month === today.getMonth() &&
@@ -207,16 +155,11 @@ function renderCalendar(year, month) {
 
     if (isToday) div.classList.add("today");
 
-    div.innerHTML = `
-      <div class="nepali-date">${toNepaliNumber(bsDay)}</div>
-      <div class="english-date">${d}</div>
-    `;
-
+    div.innerHTML = `<div class="date-number">${d}</div>`;
     calendar.appendChild(div);
   }
 }
 
-// Button actions
 document.getElementById("prevBtn").addEventListener("click", () => {
   currentMonth--;
   if (currentMonth < 0) {
@@ -235,9 +178,8 @@ document.getElementById("nextBtn").addEventListener("click", () => {
   renderCalendar(currentYear, currentMonth);
 });
 
-// Initialize
 renderCalendar(currentYear, currentMonth);
 </script>
-
+<a href="index.html" class="home-btn">Return to Home</a>
 </body>
 </html>
