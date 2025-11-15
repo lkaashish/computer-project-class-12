@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button id="darkToggle" class="dark-toggle">🌙</button>
     <nav class="navbar">
         <div class="logo">
             <svg width="50" height="50" viewBox="0 0 50 50">
@@ -116,6 +117,9 @@
                 searchSite();
             }
         });
+        document.getElementById("darkToggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+});
     </script>
 </body>
 
