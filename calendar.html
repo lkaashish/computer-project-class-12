@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Calendar</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2em;
+  }
+
+  .header {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 340px;
+  }
+
+  .btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background: rgba(255,255,255,0.4);
+  }
+
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    width: 95%;
+    max-width: 700px;
+  }
+
+  .day {
+    text-align: center;
+    font-weight: 600;
+    background: rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 8px 0;
+  }
+
+  .date-cell {
+    position: relative;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    height: 70px;
+    text-align: center;
+    transition: 0.2s;
+    overflow: hidden;
+  }
+
+  .date-cell:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+  }
+
+  .date-number {
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #fff;
+  }
+
+  .today {
+    background: #ffeb3b;
+    color: #000;
+    font-weight: bold;
+  }
+
+  footer {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #ddd;
+  }
+</style>
+</head>
+<body>
+
+<h1>📅 English Calendar</h1>
+<div class="header">
+  <button class="btn" id="prevBtn">⬅️</button>
+  <div id="monthYear">Month Year</div>
+  <button class="btn" id="nextBtn">➡️</button>
+</div>
+
+<div class="calendar" id="calendar"></div>
+
+<footer>Made with ❤️ by Aryan Gurung</footer>
+
+<script>
+const monthYearText = document.getElementById("monthYear");
+const calendar = document.getElementById("calendar");
+
+let currentYear = new Date().getFullYear();
+let currentMonth = new Date().getMonth();
+
+function renderCalendar(year, month) {
+  calendar.innerHTML = "";
+
+  const today = new Date();
+  const firstDay = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
+
+  monthYearText.textContent = `${new Date(year, month).toLocaleString("en-US", { month: "long" })} ${year}`;
+
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  for (let i = 0; i < 7; i++) {
+    const div = document.createElement("div");
+    div.className = "day";
+    div.textContent = days[i];
+    calendar.appendChild(div);
+  }
+
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement("div");
+    calendar.appendChild(empty);
+  }
+
+  for (let d = 1; d <= totalDays; d++) {
+    const div = document.createElement("div");
+    div.className = "date-cell";
+
+    const isToday =
+      d === today.getDate() &&
+      month === today.getMonth() &&
+      year === today.getFullYear();
+
+    if (isToday) div.classList.add("today");
+
+    div.innerHTML = `<div class="date-number">${d}</div>`;
+    calendar.appendChild(div);
+  }
+}
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  renderCalendar(currentYear, currentMonth);
+});
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  renderCalendar(currentYear, currentMonth);
+});
+
+renderCalendar(currentYear, currentMonth);
+</script>
+<a href="index.html" class="home-btn">Return to Home</a>
+</body>
+</html>
