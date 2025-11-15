@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Masters</title>
+    <title>Tech Masters - Innovation Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Dark Mode Toggle -->
     <button id="darkToggle" class="dark-toggle">🌙</button>
+
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
             <svg width="50" height="50" viewBox="0 0 50 50">
-                <rect width="50" height="50" rx="10" fill="#4A90E2"/>
+                <defs>
+                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <rect width="50" height="50" rx="12" fill="url(#logoGradient)"/>
                 <text x="25" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">TM</text>
             </svg>
             <span class="logo-text">Tech Masters</span>
@@ -47,80 +56,84 @@
         </div>
     </nav>
     
+    <!-- Hero Section -->
     <main class="main-content">
         <div class="hero">
-            <h1>Welcome to Tech Masters</h1>
-            <p>Your gateway to innovative applications and talented members</p>
+            <div class="hero-content">
+                <h1>Welcome to Tech Masters</h1>
+                <p>Your gateway to innovative applications and talented members</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="alert('Explore our amazing apps!')">Explore Apps</button>
+                    <button class="btn-secondary" onclick="alert('Meet our talented team!')">Meet the Team</button>
+                </div>
+            </div>
         </div>
         
+        <!-- Features Section -->
         <section class="features">
             <div class="feature-card">
                 <h3>Our Apps</h3>
-                <p>Explore our diverse range of applications:
-                    <ul>
-                        <li>Dictionary</li>
-                        <li>Clock</li>
-                        <li>Calculator</li>
-                        <li>Calendar</li>
-                        <li>Game</li>
-                    </ul>
-                </p>
-            
+                <p>Explore our diverse range of applications:</p>
+                <ul>
+                    <li>Dictionary - Smart word lookup</li>
+                    <li>Clock - World time zones</li>
+                    <li>Calculator - Advanced computations</li>
+                    <li>Calendar - Event planning</li>
+                    <li>Game - Interactive entertainment</li>
+                </ul>
             </div>
+            
             <div class="feature-card">
                 <h3>Our Team</h3>
-                <p>Meet the talented individuals behind Tech Masters:   
-                    <ul>
-                        <li>Aashish Sharma Lamichhane (Leader)</li>
-                        <li>Aishwarya Thapa</li>
-                        <li>Aryan Gurung</li>
-                        <li>Utsav Adhikari</li>
-                        <li>Shiv Sagar</li>
-                    </ul>
-                </p>
+                <p>Meet the talented individuals behind Tech Masters:</p>
+                <ul>
+                    <li>Aashish Sharma Lamichhane (Leader)</li>
+                    <li>Aishwarya Thapa</li>
+                    <li>Aryan Gurung</li>
+                    <li>Utsav Adhikari</li>
+                    <li>Shiv Sagar</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Amazing Apps</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Team Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Dedication</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Innovation</div>
+                </div>
             </div>
         </section>
     </main>
     
-    <script>
-        function searchSite() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            
-            const pages = {
-                'dictionary': 'dictionary.html',
-                'clock': 'clock.html',
-                'calculator': 'calculator.html',
-                'calendar': 'calendar.html',
-                'game': 'game.html',
-                'Aashish': 'member1.html',
-                'member 1': 'member1.html',
-                'member2': 'member2.html',
-                'member 2': 'member2.html',
-                'member3': 'member3.html',
-                'member 3': 'member3.html',
-                'member4': 'member4.html',
-                'member 4': 'member4.html',
-                'member5': 'member5.html',
-                'member 5': 'member5.html',
-                'home': 'index.html'
-            };
-            
-            if (pages[searchTerm]) {
-                window.location.href = pages[searchTerm];
-            } else {
-                alert('Page not found. Try searching for: Dictionary, Clock, Calculator, Calendar, Game, or Member 1-5');
-            }
-        }
-        
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchSite();
-            }
-        });
-        document.getElementById("darkToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
-    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Tech Masters. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Built with passion by the Tech Masters team</p>
+        </div>
+    </footer>
+    
+    <!-- Link to JavaScript file -->
+    <script src="main.js"></script>
 </body>
-
 </html>
