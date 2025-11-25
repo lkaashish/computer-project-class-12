@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Digital Clock</title>
+	<link rel="stylesheet" type="text/css" href="clock.css">
+</head>
+<body>
+	<div class="abc">
+		<div class="container">
+			<div class="clock">
+				<span id="hrs">00</span>
+				<span>:</span>
+				<span id="min">00</span>
+				<span>:</span>
+				<span id="sec">00</span>
+				<span id="ampm">AM</span>
+			</div>
+
+			<div id="dateBox"></div>
+		</div>
+	</div>
+
+<script>
+	let hrs = document.getElementById("hrs");
+	let min = document.getElementById("min");
+	let sec = document.getElementById("sec");
+	let ampm = document.getElementById("ampm");
+	let dateBox = document.getElementById("dateBox");
+
+	setInterval(() => {
+		let now = new Date();
+
+		let hours = now.getHours();
+		let am_pm = hours >= 12 ? "PM" : "AM";
+		hours = hours % 12 || 12;
+
+		hrs.innerHTML = (hours < 10 ? "0" : "") + hours;
+		min.innerHTML = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+		sec.innerHTML = (now.getSeconds() < 10 ? "0" : "") + now.getSeconds();
+		ampm.innerHTML = am_pm;
+
+		// Date
+		let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+		dateBox.innerHTML = now.toLocaleDateString("en-US", options);
+
+	}, 1000);
+</script>
+
+</body>
+</html>
