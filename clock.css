@@ -1,0 +1,116 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Poppins", sans-serif;
+	box-sizing: border-box;
+}
+
+/* Your old purple-blue color theme, but soft */
+.abc{
+	width: 100%;
+	min-height: 100vh;
+	background: linear-gradient(45deg, #08001f, #30197d);
+	color: #fff;
+	position: relative;
+}
+
+.container{
+	width: 800px;
+	height: 220px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* Clean glass effect, no neon */
+.clock{
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.07);
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: blur(40px);
+	box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+	position: relative;
+}
+
+/* Left floating box */
+.container::before{
+	content: '';
+	width: 180px;
+	height: 180px;
+	background:#f41b75;
+	border-radius: 20px;
+	position: absolute;
+	left:-50px;
+	top:-50px;
+	z-index:-1;
+	opacity: 0.75;
+}
+
+/* Right floating circle */
+.container::after{
+	content:'';
+	width: 180px;
+	height:180px;
+	background:#419aff;
+	border-radius:50%;
+	position:absolute;
+	right:-40px;
+	bottom:-60px;
+	z-index:-1;
+	opacity: 0.75;
+}
+
+/* Time numbers */
+.clock span {
+	font-size: 85px;
+	width:110px;
+	display:inline-block;
+	text-align: center;
+	position: relative;
+	font-weight: 600;
+	color: #ffffffde;
+}
+
+/* Labels */
+.clock span::after{
+	font-size: 14px;
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #e0e0e0;
+	letter-spacing: 1px;
+}
+
+#hrs::after{
+	content:'HOUR';
+}
+#min::after{
+	content:'MIN';
+}
+#sec::after{
+	content:'SEC';
+}
+
+/* AM/PM style */
+#ampm {
+	font-size: 45px;
+	margin-left: 10px;
+	font-weight: 500;
+	color: #fff;
+}
+
+/* Date Text */
+#dateBox {
+	text-align: center;
+	margin-top: 15px;
+	font-size: 20px;
+	color: #eee;
+	letter-spacing: 1px;
+}
