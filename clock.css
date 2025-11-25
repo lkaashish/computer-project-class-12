@@ -149,20 +149,4 @@
 	box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
 	transform: translateX(-50%) translateY(-2px);
 }
-.title {
-	position: fixed;
-	top: 30px;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 24px;
-	font-weight: 600;
-	color: #fff;
-	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-	letter-spacing: 1px;
-	background: rgba(255, 255, 255, 0.08);
-	padding: 10px 30px;
-	border-radius: 15px;
-	backdrop-filter: blur(15px);
-	border: 1px solid rgba(255, 255, 255, 0.15);
-	margin: 0;
-}
+
